@@ -285,31 +285,33 @@ export function GallerySection() {
                   </div>
                   
                   {/* Image Details */}
-                  <div className="space-y-4 px-2 pb-4">
-                    <div className="flex items-center justify-between flex-wrap gap-2">
-                      <span className={`text-sm font-mono px-3 py-1 rounded bg-terminal ${categoryColors[selectedImage.category as keyof typeof categoryColors]}`}>
-                        {categoryLabels[selectedImage.category as keyof typeof categoryLabels]}
-                      </span>
-                      {selectedImage.date && (
-                        <span className="text-sm text-muted font-mono">{selectedImage.date}</span>
-                      )}
-                    </div>
-                    
-                    <h3 className="text-xl font-mono font-bold text-neon">
-                      {selectedImage.title}
-                    </h3>
-                    
-                    <p className="text-muted font-mono leading-relaxed">
-                      {selectedImage.description}
-                    </p>
-                    
-                    {/* Additional Controls Info */}
-                    <div className="text-xs text-muted font-mono mt-4 p-3 bg-terminal rounded">
-                      <p>💡 <strong>Navigation Tips:</strong></p>
-                      <p>• Use zoom controls to zoom in/out (25% - 500%)</p>
-                      <p>• Scroll to navigate when zoomed in</p>
-                      <p>• Click reset button to return to original size</p>
-                      <p>• Click outside modal or X button to close</p>
+                  <div className="bg-background/80 backdrop-blur-sm border border-terminal rounded-lg p-6 mx-2 mb-4">
+                    <div className="space-y-4">
+                      <div className="flex items-center justify-between flex-wrap gap-2">
+                        <span className={`text-sm font-mono px-3 py-1 rounded bg-terminal ${categoryColors[selectedImage.category as keyof typeof categoryColors]}`}>
+                          {categoryLabels[selectedImage.category as keyof typeof categoryLabels]}
+                        </span>
+                        {selectedImage.date && (
+                          <span className="text-sm text-muted font-mono">{selectedImage.date}</span>
+                        )}
+                      </div>
+                      
+                      <h3 className="text-2xl font-mono font-bold text-neon leading-tight">
+                        {selectedImage.title}
+                      </h3>
+                      
+                      <p className="text-foreground font-mono leading-relaxed text-base">
+                        {selectedImage.description}
+                      </p>
+                      
+                      {/* Additional Controls Info */}
+                      <div className="text-xs text-muted font-mono mt-6 p-3 bg-terminal rounded border-l-2 border-accent">
+                        <p className="text-accent font-bold mb-2">💡 Navigation Tips:</p>
+                        <p>• Use zoom controls to zoom in/out (25% - 500%)</p>
+                        <p>• Scroll to navigate when zoomed in</p>
+                        <p>• Click reset button to return to original size</p>
+                        <p>• Click outside modal or X button to close</p>
+                      </div>
                     </div>
                   </div>
                 </div>
