@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
 import { TerminalWindow } from "@/components/ui/terminal-window";
 import { Camera, Filter, X, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
 import type { GalleryItem } from "@shared/schema";
@@ -43,9 +42,23 @@ export function GallerySection() {
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
   const [zoomLevel, setZoomLevel] = useState(1);
 
-  const { data: galleryItems, isLoading } = useQuery<GalleryItem[]>({
-    queryKey: ['/api/gallery'],
-  });
+  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadGallery() {
+      try {
+        const response = await fetch('/data/gallery.json');
+        const data = await response.json();
+        setGalleryItems(data);
+      } catch (error) {
+        console.error('Failed to load gallery:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    loadGallery();
+  }, []);
 
   // Zoom functionality
   const handleZoomIn = () => {

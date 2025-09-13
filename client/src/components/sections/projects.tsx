@@ -1,12 +1,26 @@
-import { useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
 import { TerminalWindow } from "@/components/ui/terminal-window";
 import { Code, Github } from "lucide-react";
 import type { Project } from "@shared/schema";
 
 export function ProjectsSection() {
-  const { data: projects, isLoading } = useQuery<Project[]>({
-    queryKey: ['/api/projects'],
-  });
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadProjects() {
+      try {
+        const response = await fetch('/data/projects.json');
+        const data = await response.json();
+        setProjects(data);
+      } catch (error) {
+        console.error('Failed to load projects:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    loadProjects();
+  }, []);
 
   if (isLoading) {
     return (

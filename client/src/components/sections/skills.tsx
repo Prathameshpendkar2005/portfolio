@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
 import { TerminalWindow } from "@/components/ui/terminal-window";
 import { 
   Cloud, UserCheck, Shield, Code, Wrench, Server, Database, 
@@ -14,9 +14,23 @@ const iconMap = {
 };
 
 export function SkillsSection() {
-  const { data: skillCategories, isLoading } = useQuery<SkillCategory[]>({
-    queryKey: ['/api/skills'],
-  });
+  const [skillCategories, setSkillCategories] = useState<SkillCategory[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadSkills() {
+      try {
+        const response = await fetch('/data/skills.json');
+        const data = await response.json();
+        setSkillCategories(data);
+      } catch (error) {
+        console.error('Failed to load skills:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    loadSkills();
+  }, []);
 
   if (isLoading) {
     return (

@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
 import { TerminalWindow } from "@/components/ui/terminal-window";
 import { Award, Cloud, UserCheck, Search } from "lucide-react";
 import type { Certification } from "@shared/schema";
@@ -8,9 +8,23 @@ const iconMap = {
 };
 
 export function CertificationsSection() {
-  const { data: certifications, isLoading } = useQuery<Certification[]>({
-    queryKey: ['/api/certifications'],
-  });
+  const [certifications, setCertifications] = useState<Certification[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadCertifications() {
+      try {
+        const response = await fetch('/data/certifications.json');
+        const data = await response.json();
+        setCertifications(data);
+      } catch (error) {
+        console.error('Failed to load certifications:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    loadCertifications();
+  }, []);
 
   if (isLoading) {
     return (
