@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { TerminalWindow } from "@/components/ui/terminal-window";
 import { Camera, Filter, X, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
@@ -64,6 +64,44 @@ export function GallerySection() {
     setSelectedImage(null);
     setZoomLevel(1); // Reset zoom when closing
   };
+
+  // Prevent right-click and image downloading
+  useEffect(() => {
+    const handleContextMenu = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'IMG' || target.closest('[data-testid*="gallery-item"]')) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    };
+
+    const handleDragStart = (e: DragEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'IMG') {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    const handleSelectStart = (e: Event) => {
+      const target = e.target as HTMLElement;
+      if (target.tagName === 'IMG' || target.closest('[data-testid*="gallery-item"]')) {
+        e.preventDefault();
+        return false;
+      }
+    };
+
+    document.addEventListener('contextmenu', handleContextMenu);
+    document.addEventListener('dragstart', handleDragStart);
+    document.addEventListener('selectstart', handleSelectStart);
+
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu);
+      document.removeEventListener('dragstart', handleDragStart);
+      document.removeEventListener('selectstart', handleSelectStart);
+    };
+  }, []);
 
   if (isLoading) {
     return (
