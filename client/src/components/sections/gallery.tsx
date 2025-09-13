@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { TerminalWindow } from "@/components/ui/terminal-window";
-import { Camera, Filter, X } from "lucide-react";
+import { Camera, Filter, X, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
 import type { GalleryItem } from "@shared/schema";
 
 // Import the images with proper paths
@@ -41,10 +41,29 @@ const categoryColors = {
 export function GallerySection() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
+  const [zoomLevel, setZoomLevel] = useState(1);
 
   const { data: galleryItems, isLoading } = useQuery<GalleryItem[]>({
     queryKey: ['/api/gallery'],
   });
+
+  // Zoom functionality
+  const handleZoomIn = () => {
+    setZoomLevel(prev => Math.min(prev + 0.25, 5)); // Max zoom 5x
+  };
+
+  const handleZoomOut = () => {
+    setZoomLevel(prev => Math.max(prev - 0.25, 0.25)); // Min zoom 0.25x
+  };
+
+  const handleResetZoom = () => {
+    setZoomLevel(1);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedImage(null);
+    setZoomLevel(1); // Reset zoom when closing
+  };
 
   if (isLoading) {
     return (
@@ -169,52 +188,117 @@ export function GallerySection() {
         )}
       </div>
 
-      {/* Image Modal */}
+      {/* Enhanced Image Modal with Zoom and Scroll */}
       {selectedImage && (
         <div
           className="fixed inset-0 bg-background/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
+          onClick={handleCloseModal}
           data-testid="image-modal"
         >
           <div
-            className="max-w-4xl max-h-[90vh] relative"
+            className="w-full max-w-6xl h-[90vh] relative"
             onClick={(e) => e.stopPropagation()}
           >
             <TerminalWindow title={`${selectedImage.category}.${selectedImage.id} - Full View`}>
-              <div>
-                <button
-                  onClick={() => setSelectedImage(null)}
-                  className="absolute top-4 right-4 z-10 bg-neon text-background p-2 rounded hover:bg-accent transition-colors"
-                  data-testid="close-modal"
-                >
-                  <X size={20} />
-                </button>
-                
-                <div className="mb-4">
-                  <img 
-                    src={imageMap[selectedImage.imagePath as keyof typeof imageMap]}
-                    alt={selectedImage.title}
-                    className="w-full h-auto rounded"
-                  />
-                </div>
-                
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className={`text-sm font-mono px-3 py-1 rounded bg-terminal ${categoryColors[selectedImage.category as keyof typeof categoryColors]}`}>
-                      {categoryLabels[selectedImage.category as keyof typeof categoryLabels]}
+              <div className="h-full flex flex-col">
+                {/* Header with Close Button and Zoom Controls */}
+                <div className="flex items-center justify-between mb-4 p-2 bg-terminal rounded sticky top-0 z-20">
+                  <div className="flex items-center gap-2">
+                    {/* Zoom Controls */}
+                    <button
+                      onClick={handleZoomOut}
+                      className="bg-accent text-background p-2 rounded hover:bg-neon transition-colors"
+                      data-testid="zoom-out-btn"
+                      title="Zoom Out"
+                    >
+                      <ZoomOut size={16} />
+                    </button>
+                    
+                    <span className="text-sm font-mono text-muted px-2">
+                      {Math.round(zoomLevel * 100)}%
                     </span>
-                    {selectedImage.date && (
-                      <span className="text-sm text-muted font-mono">{selectedImage.date}</span>
-                    )}
+                    
+                    <button
+                      onClick={handleZoomIn}
+                      className="bg-accent text-background p-2 rounded hover:bg-neon transition-colors"
+                      data-testid="zoom-in-btn"
+                      title="Zoom In"
+                    >
+                      <ZoomIn size={16} />
+                    </button>
+                    
+                    <button
+                      onClick={handleResetZoom}
+                      className="bg-muted text-background p-2 rounded hover:bg-accent transition-colors"
+                      data-testid="reset-zoom-btn"
+                      title="Reset Zoom"
+                    >
+                      <RotateCcw size={16} />
+                    </button>
                   </div>
                   
-                  <h3 className="text-xl font-mono font-bold text-neon">
-                    {selectedImage.title}
-                  </h3>
+                  <button
+                    onClick={handleCloseModal}
+                    className="bg-neon text-background p-2 rounded hover:bg-accent transition-colors"
+                    data-testid="close-modal"
+                    title="Close Modal"
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
+
+                {/* Scrollable Content Area */}
+                <div className="flex-1 overflow-auto">
+                  {/* Image Container with Zoom */}
+                  <div className="mb-6 flex justify-center">
+                    <div 
+                      className="transition-transform duration-200 ease-in-out cursor-move"
+                      style={{
+                        transform: `scale(${zoomLevel})`,
+                        transformOrigin: 'center'
+                      }}
+                    >
+                      <img 
+                        src={imageMap[selectedImage.imagePath as keyof typeof imageMap]}
+                        alt={selectedImage.title}
+                        className="max-w-none rounded shadow-lg"
+                        style={{
+                          maxHeight: zoomLevel <= 1 ? '60vh' : 'none',
+                          width: zoomLevel <= 1 ? 'auto' : '100%'
+                        }}
+                        data-testid="modal-image"
+                      />
+                    </div>
+                  </div>
                   
-                  <p className="text-muted font-mono">
-                    {selectedImage.description}
-                  </p>
+                  {/* Image Details */}
+                  <div className="space-y-4 px-2 pb-4">
+                    <div className="flex items-center justify-between flex-wrap gap-2">
+                      <span className={`text-sm font-mono px-3 py-1 rounded bg-terminal ${categoryColors[selectedImage.category as keyof typeof categoryColors]}`}>
+                        {categoryLabels[selectedImage.category as keyof typeof categoryLabels]}
+                      </span>
+                      {selectedImage.date && (
+                        <span className="text-sm text-muted font-mono">{selectedImage.date}</span>
+                      )}
+                    </div>
+                    
+                    <h3 className="text-xl font-mono font-bold text-neon">
+                      {selectedImage.title}
+                    </h3>
+                    
+                    <p className="text-muted font-mono leading-relaxed">
+                      {selectedImage.description}
+                    </p>
+                    
+                    {/* Additional Controls Info */}
+                    <div className="text-xs text-muted font-mono mt-4 p-3 bg-terminal rounded">
+                      <p>💡 <strong>Navigation Tips:</strong></p>
+                      <p>• Use zoom controls to zoom in/out (25% - 500%)</p>
+                      <p>• Scroll to navigate when zoomed in</p>
+                      <p>• Click reset button to return to original size</p>
+                      <p>• Click outside modal or X button to close</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </TerminalWindow>
