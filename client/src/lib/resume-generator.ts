@@ -110,8 +110,8 @@ export function generateATSResume(): void {
 
   // Certifications
   addSection('CERTIFICATIONS');
+  addBulletPoint('AWS Cloud Certification - SevenMentor (September 2025)');
   addBulletPoint('Digital Forensics Essentials (DFE) - EC-Council (March 2023)');
-  addBulletPoint('AWS Cloud Certification - SevenMentor (In Progress)');
   addBulletPoint('CompTIA PenTest+ - Udemy (In Progress)');
 
   // Key Projects

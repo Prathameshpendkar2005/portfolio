@@ -128,8 +128,8 @@ const certifications: Certification[] = [
     provider: "SevenMentor",
     year: "2025",
     description: "Cloud Security & Infrastructure",
-    status: "In Progress",
-    statusColor: "bg-accent text-background",
+    status: "Completed - Sep 2025",
+    statusColor: "bg-green-600 text-white",
     icon: "Cloud"
   },
   {
@@ -202,6 +202,14 @@ const galleryItems: GalleryItem[] = [
     imagePath: "@assets/Prathamesh_Pendkar_1756967941797.png",
     category: "certificate",
     date: "August 2025"
+  },
+  {
+    id: "aws-certificate",
+    title: "AWS Certificate",
+    description: "AWS Cloud Certification from SevenMentor - Comprehensive training covering core AWS services, security, architecture, and billing",
+    imagePath: "@assets/Screenshot 2025-09-13 192405_1757777883128.png",
+    category: "certificate",
+    date: "Sep 2025"
   }
 ];
 

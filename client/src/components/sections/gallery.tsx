@@ -11,6 +11,7 @@ import araplImage from "@assets/ARAPL_1756967719523.jpg";
 import techblueImage from "@assets/image_1756967840745.png";
 import digitalForensicsImage from "@assets/Digital_forensics_essentials_1756967862712.png";
 import bloggersconImage from "@assets/Prathamesh_Pendkar_1756967941797.png";
+import awsCertificateImage from "@assets/Screenshot 2025-09-13 192405_1757777883128.png";
 
 // Map the image paths to imported modules
 const imageMap = {
@@ -20,6 +21,7 @@ const imageMap = {
   "@assets/image_1756967840745.png": techblueImage,
   "@assets/Digital_forensics_essentials_1756967862712.png": digitalForensicsImage,
   "@assets/Prathamesh_Pendkar_1756967941797.png": bloggersconImage,
+  "@assets/Screenshot 2025-09-13 192405_1757777883128.png": awsCertificateImage,
 };
 
 const categoryLabels = {
