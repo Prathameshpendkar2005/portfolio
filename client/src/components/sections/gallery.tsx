@@ -188,115 +188,119 @@ export function GallerySection() {
         )}
       </div>
 
-      {/* Enhanced Image Modal with Zoom and Scroll */}
+      {/* Enhanced Responsive Image Modal with Zoom and Scroll */}
       {selectedImage && (
         <div
-          className="fixed inset-0 bg-background/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-background/95 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4"
           onClick={handleCloseModal}
           data-testid="image-modal"
         >
           <div
-            className="w-full max-w-6xl h-[90vh] relative"
+            className="w-full h-full max-w-7xl relative"
             onClick={(e) => e.stopPropagation()}
           >
             <TerminalWindow title={`${selectedImage.category}.${selectedImage.id} - Full View`}>
               <div className="h-full flex flex-col">
                 {/* Header with Close Button and Zoom Controls */}
-                <div className="flex items-center justify-between mb-4 p-2 bg-terminal rounded sticky top-0 z-20">
-                  <div className="flex items-center gap-2">
+                <div className="flex items-center justify-between mb-2 p-2 bg-terminal rounded sticky top-0 z-20 flex-wrap gap-2">
+                  <div className="flex items-center gap-1 sm:gap-2 flex-wrap">
                     {/* Zoom Controls */}
                     <button
                       onClick={handleZoomOut}
-                      className="bg-accent text-background p-2 rounded hover:bg-neon transition-colors"
+                      className="bg-accent text-background p-1.5 sm:p-2 rounded hover:bg-neon transition-colors text-sm"
                       data-testid="zoom-out-btn"
                       title="Zoom Out"
                     >
-                      <ZoomOut size={16} />
+                      <ZoomOut size={14} />
                     </button>
                     
-                    <span className="text-sm font-mono text-muted px-2">
+                    <span className="text-xs sm:text-sm font-mono text-muted px-1 sm:px-2 whitespace-nowrap">
                       {Math.round(zoomLevel * 100)}%
                     </span>
                     
                     <button
                       onClick={handleZoomIn}
-                      className="bg-accent text-background p-2 rounded hover:bg-neon transition-colors"
+                      className="bg-accent text-background p-1.5 sm:p-2 rounded hover:bg-neon transition-colors text-sm"
                       data-testid="zoom-in-btn"
                       title="Zoom In"
                     >
-                      <ZoomIn size={16} />
+                      <ZoomIn size={14} />
                     </button>
                     
                     <button
                       onClick={handleResetZoom}
-                      className="bg-muted text-background p-2 rounded hover:bg-accent transition-colors"
+                      className="bg-muted text-background p-1.5 sm:p-2 rounded hover:bg-accent transition-colors text-sm"
                       data-testid="reset-zoom-btn"
                       title="Reset Zoom"
                     >
-                      <RotateCcw size={16} />
+                      <RotateCcw size={14} />
                     </button>
                   </div>
                   
                   <button
                     onClick={handleCloseModal}
-                    className="bg-neon text-background p-2 rounded hover:bg-accent transition-colors"
+                    className="bg-neon text-background p-1.5 sm:p-2 rounded hover:bg-accent transition-colors"
                     data-testid="close-modal"
                     title="Close Modal"
                   >
-                    <X size={20} />
+                    <X size={16} />
                   </button>
                 </div>
 
                 {/* Scrollable Content Area */}
-                <div className="flex-1 overflow-auto">
-                  {/* Image Container with Zoom */}
-                  <div className="mb-6 flex justify-center">
+                <div className="flex-1 overflow-auto overscroll-contain">
+                  {/* Image Container with Zoom - Responsive Design */}
+                  <div className="mb-4 flex justify-center items-start">
                     <div 
-                      className="transition-transform duration-200 ease-in-out cursor-move"
+                      className="transition-transform duration-200 ease-in-out"
                       style={{
                         transform: `scale(${zoomLevel})`,
-                        transformOrigin: 'center'
+                        transformOrigin: 'center top'
                       }}
                     >
                       <img 
                         src={imageMap[selectedImage.imagePath as keyof typeof imageMap]}
                         alt={selectedImage.title}
-                        className="max-w-none rounded shadow-lg"
+                        className="max-w-none rounded shadow-lg border border-muted/20"
                         style={{
-                          maxHeight: zoomLevel <= 1 ? '60vh' : 'none',
-                          width: zoomLevel <= 1 ? 'auto' : '100%'
+                          // Responsive sizing based on screen and zoom level
+                          width: zoomLevel <= 1 ? 'min(90vw, 800px)' : '100%',
+                          height: zoomLevel <= 1 ? 'auto' : 'auto',
+                          minWidth: zoomLevel <= 1 ? '320px' : 'auto'
                         }}
                         data-testid="modal-image"
                       />
                     </div>
                   </div>
                   
-                  {/* Image Details */}
-                  <div className="space-y-4 px-2 pb-4">
+                  {/* Image Details - Improved Responsive Layout */}
+                  <div className="space-y-3 px-2 sm:px-4 pb-4">
                     <div className="flex items-center justify-between flex-wrap gap-2">
-                      <span className={`text-sm font-mono px-3 py-1 rounded bg-terminal ${categoryColors[selectedImage.category as keyof typeof categoryColors]}`}>
+                      <span className={`text-xs sm:text-sm font-mono px-2 sm:px-3 py-1 rounded bg-terminal ${categoryColors[selectedImage.category as keyof typeof categoryColors]}`}>
                         {categoryLabels[selectedImage.category as keyof typeof categoryLabels]}
                       </span>
                       {selectedImage.date && (
-                        <span className="text-sm text-muted font-mono">{selectedImage.date}</span>
+                        <span className="text-xs sm:text-sm text-muted font-mono">{selectedImage.date}</span>
                       )}
                     </div>
                     
-                    <h3 className="text-xl font-mono font-bold text-neon">
+                    <h3 className="text-lg sm:text-xl font-mono font-bold text-neon leading-tight">
                       {selectedImage.title}
                     </h3>
                     
-                    <p className="text-muted font-mono leading-relaxed">
+                    <p className="text-sm sm:text-base text-muted font-mono leading-relaxed">
                       {selectedImage.description}
                     </p>
                     
-                    {/* Additional Controls Info */}
-                    <div className="text-xs text-muted font-mono mt-4 p-3 bg-terminal rounded">
-                      <p>💡 <strong>Navigation Tips:</strong></p>
-                      <p>• Use zoom controls to zoom in/out (25% - 500%)</p>
-                      <p>• Scroll to navigate when zoomed in</p>
-                      <p>• Click reset button to return to original size</p>
-                      <p>• Click outside modal or X button to close</p>
+                    {/* Improved Controls Info */}
+                    <div className="text-xs text-muted font-mono mt-4 p-2 sm:p-3 bg-terminal rounded">
+                      <p className="font-bold text-neon mb-1">📖 Reading Tips:</p>
+                      <div className="space-y-1">
+                        <p>• Zoom in to read certificate text clearly</p>
+                        <p>• Scroll up/down to navigate long documents</p>
+                        <p>• Use reset button to return to fit-to-screen</p>
+                        <p>• On mobile: pinch to zoom, drag to scroll</p>
+                      </div>
                     </div>
                   </div>
                 </div>
