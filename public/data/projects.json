@@ -1,0 +1,50 @@
+[
+  {
+    "id": "aws-security",
+    "title": "Secure Web Hosting on AWS EC2",
+    "description": "Deployed a web application on EC2 and S3 with custom IAM policies for least-privilege access and isolation.",
+    "tech": ["AWS EC2", "S3", "IAM", "VPC", "CloudFront"],
+    "details": [
+      "Security Groups Configuration",
+      "Route 53 DNS Setup", 
+      "WordPress Hardening"
+    ],
+    "githubUrl": "https://github.com/Prathameshpendkar2005/Projects.git"
+  },
+  {
+    "id": "recon-automation",
+    "title": "Recon Automation Bash Script",
+    "description": "Automated reconnaissance and vulnerability scanning with endpoint enumeration and comprehensive reporting.",
+    "tech": ["Bash", "Nmap", "OWASP ZAP", "FFUF", "WPScan"],
+    "details": [
+      "Subdomain Enumeration",
+      "Port Scanning & Detection",
+      "Automated Report Generation"
+    ],
+    "githubUrl": "https://github.com/Prathameshpendkar2005/Projects.git"
+  },
+  {
+    "id": "tscm-design",
+    "title": "TSCM Product Design",
+    "description": "Built a hardware-assisted tool to detect hidden surveillance devices with access control integration.",
+    "tech": ["Embedded Systems", "RF Detection", "Security Engineering"],
+    "details": [
+      "RF Signal Analysis",
+      "Hardware Integration",
+      "35% Detection Accuracy Improvement"
+    ],
+    "githubUrl": "https://github.com/Prathameshpendkar2005/Projects.git"
+  },
+  {
+    "id": "vulnerability-lab",
+    "title": "Web Vulnerability Testing Lab",
+    "description": "Created a comprehensive lab to simulate and exploit OWASP Top 10 vulnerabilities for VAPT practice.",
+    "tech": ["OWASP Juice Shop", "bWAPP", "Metasploit", "Docker"],
+    "details": [
+      "OWASP Top 10 Simulations",
+      "Exploitation Frameworks",
+      "Containerized Environment"
+    ],
+    "githubUrl": "https://github.com/Prathameshpendkar2005/Projects.git"
+  }
+]

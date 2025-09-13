@@ -1,0 +1,58 @@
+[
+  {
+    "id": "projects-screenshot",
+    "title": "Cybersecurity Projects Portfolio",
+    "description": "Screenshot showcasing secure web hosting, recon automation, TSCM design, and vulnerability testing lab projects",
+    "imagePath": "@assets/image_1756967533758.png",
+    "category": "project",
+    "date": "2025"
+  },
+  {
+    "id": "team-photo",
+    "title": "Professional Team Collaboration",
+    "description": "Working with cybersecurity professionals and colleagues during internship experience",
+    "imagePath": "@assets/WhatsApp Image 2024-08-07 at 21.11.15_3b95bb5b_1756967707430.jpg",
+    "category": "team",
+    "date": "August 2024"
+  },
+  {
+    "id": "arapl-certificate",
+    "title": "ARAPL Vulnerability Management Certificate",
+    "description": "Certificate from ARAPL for completion of vulnerability management and penetration testing internship program",
+    "imagePath": "@assets/ARAPL_1756967719523.jpg",
+    "category": "certificate",
+    "date": "September 2023"
+  },
+  {
+    "id": "techblue-certificate",
+    "title": "TechBlue Technology Workshop Certificate",
+    "description": "Certificate of participation for 2-day TechBlue Technology Workshop on volume forecasting and database security",
+    "imagePath": "@assets/image_1756967840745.png",
+    "category": "certificate",
+    "date": "2023"
+  },
+  {
+    "id": "digital-forensics-certificate",
+    "title": "Digital Forensics Essentials (DFE) - EC-Council",
+    "description": "EC-Council certified Digital Forensics Essentials course completion certificate - enhancing incident response capabilities",
+    "imagePath": "@assets/Digital_forensics_essentials_1756967862712.png",
+    "category": "certificate",
+    "date": "June 2024"
+  },
+  {
+    "id": "bloggerscon-certificate",
+    "title": "BloggersCon Security Analyst Internship",
+    "description": "Certificate of completion for Security Analyst Internship at BloggersCon Vision Pvt Ltd, focusing on bug bounty and VAPT",
+    "imagePath": "@assets/Prathamesh_Pendkar_1756967941797.png",
+    "category": "certificate",
+    "date": "August 2025"
+  },
+  {
+    "id": "aws-certificate",
+    "title": "AWS Certificate",
+    "description": "AWS Cloud Certification from SevenMentor - Comprehensive training covering core AWS services, security, architecture, and billing",
+    "imagePath": "@assets/Screenshot 2025-09-13 192405_1757777883128.png",
+    "category": "certificate",
+    "date": "Sep 2025"
+  }
+]

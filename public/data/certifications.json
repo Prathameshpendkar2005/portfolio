@@ -1,0 +1,32 @@
+[
+  {
+    "id": "aws-cert",
+    "title": "AWS Cloud Certification",
+    "provider": "SevenMentor",
+    "year": "2025",
+    "description": "Cloud Security & Infrastructure",
+    "status": "Completed - Sep 2025",
+    "statusColor": "bg-green-600 text-white",
+    "icon": "Cloud"
+  },
+  {
+    "id": "comptia-pentest",
+    "title": "CompTIA PenTest+",
+    "provider": "Udemy",
+    "year": "In Progress",
+    "description": "Penetration Testing & Vulnerability Assessment",
+    "status": "In Progress",
+    "statusColor": "bg-accent text-background",
+    "icon": "UserCheck"
+  },
+  {
+    "id": "dfe-cert",
+    "title": "Digital Forensics Essentials (DFE)",
+    "provider": "EC-Council",
+    "year": "March 2023",
+    "description": "Digital Forensics & Incident Response",
+    "status": "Certified",
+    "statusColor": "bg-neon text-background",
+    "icon": "Search"
+  }
+]
