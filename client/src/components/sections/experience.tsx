@@ -1,26 +1,12 @@
-import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { TerminalWindow } from "@/components/ui/terminal-window";
 import { Briefcase } from "lucide-react";
 import type { Experience } from "@shared/schema";
 
 export function ExperienceSection() {
-  const [experiences, setExperiences] = useState<Experience[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    async function loadExperience() {
-      try {
-        const response = await fetch('/data/experience.json');
-        const data = await response.json();
-        setExperiences(data);
-      } catch (error) {
-        console.error('Failed to load experience:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    loadExperience();
-  }, []);
+  const { data: experiences, isLoading } = useQuery<Experience[]>({
+    queryKey: ['/api/experience'],
+  });
 
   if (isLoading) {
     return (
