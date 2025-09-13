@@ -128,7 +128,7 @@ const certifications: Certification[] = [
     provider: "SevenMentor",
     year: "2025",
     description: "Cloud Security & Infrastructure",
-    status: "Certified",
+    status: "Completed - Sep 2025",
     statusColor: "bg-green-600 text-white",
     icon: "Cloud"
   },
