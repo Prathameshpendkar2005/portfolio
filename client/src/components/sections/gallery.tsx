@@ -188,71 +188,78 @@ export function GallerySection() {
         )}
       </div>
 
-      {/* Enhanced Responsive Image Modal with Zoom and Scroll */}
+      {/* Fully Responsive Modal with Auto-fit Display */}
       {selectedImage && (
         <div
-          className="fixed inset-0 bg-background/95 backdrop-blur-sm z-50 flex items-center justify-center p-2 sm:p-4"
+          className="fixed inset-0 bg-background/95 backdrop-blur-sm z-50"
           onClick={handleCloseModal}
           data-testid="image-modal"
         >
-          <div
-            className="w-full h-full max-w-7xl relative"
+          {/* Modal Container - Full screen responsive */}
+          <div 
+            className="absolute inset-0 flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
-            <TerminalWindow title={`${selectedImage.category}.${selectedImage.id} - Full View`}>
-              <div className="h-full flex flex-col">
-                {/* Header with Close Button and Zoom Controls */}
-                <div className="flex items-center justify-between mb-2 p-2 bg-terminal rounded sticky top-0 z-20 flex-wrap gap-2">
-                  <div className="flex items-center gap-1 sm:gap-2 flex-wrap">
-                    {/* Zoom Controls */}
-                    <button
-                      onClick={handleZoomOut}
-                      className="bg-accent text-background p-1.5 sm:p-2 rounded hover:bg-neon transition-colors text-sm"
-                      data-testid="zoom-out-btn"
-                      title="Zoom Out"
-                    >
-                      <ZoomOut size={14} />
-                    </button>
-                    
-                    <span className="text-xs sm:text-sm font-mono text-muted px-1 sm:px-2 whitespace-nowrap">
-                      {Math.round(zoomLevel * 100)}%
-                    </span>
-                    
-                    <button
-                      onClick={handleZoomIn}
-                      className="bg-accent text-background p-1.5 sm:p-2 rounded hover:bg-neon transition-colors text-sm"
-                      data-testid="zoom-in-btn"
-                      title="Zoom In"
-                    >
-                      <ZoomIn size={14} />
-                    </button>
-                    
-                    <button
-                      onClick={handleResetZoom}
-                      className="bg-muted text-background p-1.5 sm:p-2 rounded hover:bg-accent transition-colors text-sm"
-                      data-testid="reset-zoom-btn"
-                      title="Reset Zoom"
-                    >
-                      <RotateCcw size={14} />
-                    </button>
-                  </div>
+            {/* Top Controls Bar - Fixed at top */}
+            <div className="flex-shrink-0 p-2 sm:p-4">
+              <div className="bg-terminal rounded-lg p-2 flex items-center justify-between flex-wrap gap-2 border border-muted/20">
+                <div className="flex items-center gap-1 sm:gap-2 flex-wrap">
+                  {/* Zoom Controls */}
+                  <button
+                    onClick={handleZoomOut}
+                    className="bg-accent text-background p-1.5 sm:p-2 rounded hover:bg-neon transition-colors"
+                    data-testid="zoom-out-btn"
+                    title="Zoom Out"
+                  >
+                    <ZoomOut size={14} />
+                  </button>
+                  
+                  <span className="text-xs sm:text-sm font-mono text-foreground px-1 sm:px-2 whitespace-nowrap bg-background rounded px-2 py-1">
+                    {Math.round(zoomLevel * 100)}%
+                  </span>
                   
                   <button
-                    onClick={handleCloseModal}
-                    className="bg-neon text-background p-1.5 sm:p-2 rounded hover:bg-accent transition-colors"
-                    data-testid="close-modal"
-                    title="Close Modal"
+                    onClick={handleZoomIn}
+                    className="bg-accent text-background p-1.5 sm:p-2 rounded hover:bg-neon transition-colors"
+                    data-testid="zoom-in-btn"
+                    title="Zoom In"
                   >
-                    <X size={16} />
+                    <ZoomIn size={14} />
                   </button>
+                  
+                  <button
+                    onClick={handleResetZoom}
+                    className="bg-muted text-background p-1.5 sm:p-2 rounded hover:bg-accent transition-colors"
+                    data-testid="reset-zoom-btn"
+                    title="Reset Zoom"
+                  >
+                    <RotateCcw size={14} />
+                  </button>
+                  
+                  <span className="text-xs font-mono text-neon ml-2">
+                    {selectedImage.category}.{selectedImage.id} - Full View
+                  </span>
                 </div>
+                
+                <button
+                  onClick={handleCloseModal}
+                  className="bg-neon text-background p-1.5 sm:p-2 rounded hover:bg-accent transition-colors"
+                  data-testid="close-modal"
+                  title="Close Modal"
+                >
+                  <X size={16} />
+                </button>
+              </div>
+            </div>
 
-                {/* Scrollable Content Area */}
-                <div className="flex-1 overflow-auto overscroll-contain">
-                  {/* Image Container with Zoom - Responsive Design */}
-                  <div className="mb-4 flex justify-center items-start">
+            {/* Main Content Area - Flexible and scrollable */}
+            <div className="flex-1 overflow-hidden px-2 sm:px-4">
+              <div className="h-full overflow-auto bg-terminal rounded-lg border border-muted/20">
+                <div className="p-2 sm:p-4">
+                  {/* Image Display Area */}
+                  <div className="flex justify-center mb-4">
                     <div 
-                      className="transition-transform duration-200 ease-in-out"
+                      className="transition-all duration-200 ease-in-out"
                       style={{
                         transform: `scale(${zoomLevel})`,
                         transformOrigin: 'center top'
@@ -261,22 +268,23 @@ export function GallerySection() {
                       <img 
                         src={imageMap[selectedImage.imagePath as keyof typeof imageMap]}
                         alt={selectedImage.title}
-                        className="max-w-none rounded shadow-lg border border-muted/20"
+                        className="rounded shadow-lg border border-muted/30"
                         style={{
-                          // Responsive sizing based on screen and zoom level
-                          width: zoomLevel <= 1 ? 'min(90vw, 800px)' : '100%',
-                          height: zoomLevel <= 1 ? 'auto' : 'auto',
-                          minWidth: zoomLevel <= 1 ? '320px' : 'auto'
+                          maxWidth: zoomLevel <= 1 ? '100%' : 'none',
+                          width: zoomLevel <= 1 ? 'auto' : '120%',
+                          height: 'auto',
+                          // Auto-fit to container while maintaining aspect ratio
+                          objectFit: 'contain'
                         }}
                         data-testid="modal-image"
                       />
                     </div>
                   </div>
                   
-                  {/* Image Details - Improved Responsive Layout */}
-                  <div className="space-y-3 px-2 sm:px-4 pb-4">
+                  {/* Certificate Details */}
+                  <div className="space-y-3 border-t border-muted/20 pt-4">
                     <div className="flex items-center justify-between flex-wrap gap-2">
-                      <span className={`text-xs sm:text-sm font-mono px-2 sm:px-3 py-1 rounded bg-terminal ${categoryColors[selectedImage.category as keyof typeof categoryColors]}`}>
+                      <span className={`text-xs sm:text-sm font-mono px-2 sm:px-3 py-1 rounded ${categoryColors[selectedImage.category as keyof typeof categoryColors]}`}>
                         {categoryLabels[selectedImage.category as keyof typeof categoryLabels]}
                       </span>
                       {selectedImage.date && (
@@ -292,20 +300,23 @@ export function GallerySection() {
                       {selectedImage.description}
                     </p>
                     
-                    {/* Improved Controls Info */}
-                    <div className="text-xs text-muted font-mono mt-4 p-2 sm:p-3 bg-terminal rounded">
-                      <p className="font-bold text-neon mb-1">📖 Reading Tips:</p>
+                    {/* Navigation Help */}
+                    <div className="text-xs text-muted font-mono mt-4 p-2 sm:p-3 bg-background rounded border">
+                      <p className="font-bold text-neon mb-1">📖 Navigation Help:</p>
                       <div className="space-y-1">
-                        <p>• Zoom in to read certificate text clearly</p>
-                        <p>• Scroll up/down to navigate long documents</p>
-                        <p>• Use reset button to return to fit-to-screen</p>
-                        <p>• On mobile: pinch to zoom, drag to scroll</p>
+                        <p>• Zoom in/out with + - buttons to read text clearly</p>
+                        <p>• Scroll within this area to view full certificate</p>
+                        <p>• Reset button returns to original size</p>
+                        <p>• Modal auto-adjusts to your screen size</p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </TerminalWindow>
+            </div>
+            
+            {/* Bottom padding */}
+            <div className="flex-shrink-0 h-2 sm:h-4"></div>
           </div>
         </div>
       )}
