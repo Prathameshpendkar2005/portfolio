@@ -52,6 +52,19 @@ const projects: Project[] = [
       "Containerized Environment"
     ],
     githubUrl: "https://github.com/Prathameshpendkar2005/Projects.git"
+  },
+  {
+    id: "iot-compliance-scanner",
+    title: "IoT Device Compliance Scanner (NIST-Based)",
+    description: "Built a compliance scanner to evaluate IoT devices against NIST security standards with secure communication and automated hardening.",
+    tech: ["MQTT", "Ansible", "NIST Standards", "TLS", "Python"],
+    details: [
+      "Secure MQTT Broker with TLS & Access Controls",
+      "Ansible Automation for NIST-Aligned Hardening",
+      "Hardening: SSH, Firewall, Logging & Service Restrictions",
+      "Notion-Ready Compliance Documentation"
+    ],
+    githubUrl: "https://github.com/Prathameshpendkar2005/Projects.git"
   }
 ];
 
