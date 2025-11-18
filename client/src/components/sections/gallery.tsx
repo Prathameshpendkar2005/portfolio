@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { TerminalWindow } from "@/components/ui/terminal-window";
-import { Camera, Filter, X, ZoomIn, ZoomOut, RotateCcw } from "lucide-react";
+import { Camera, Filter, X, ZoomIn, ZoomOut, RotateCcw, ChevronDown } from "lucide-react";
 import type { GalleryItem } from "@shared/schema";
 
 // Import the images with proper paths
@@ -12,6 +12,8 @@ import techblueImage from "@assets/image_1756967840745.png";
 import digitalForensicsImage from "@assets/Digital_forensics_essentials_1756967862712.png";
 import bloggersconImage from "@assets/Prathamesh_Pendkar_1756967941797.png";
 import awsCertificateImage from "@assets/Screenshot 2025-09-13 192405_1757777883128.png";
+import awsArchitectBadge from "@assets/aws-certified-solutions-architect-associate.png";
+import web3HackathonImage from "@assets/unstop_web3.jpeg";
 
 // Map the image paths to imported modules
 const imageMap = {
@@ -22,6 +24,8 @@ const imageMap = {
   "@assets/Digital_forensics_essentials_1756967862712.png": digitalForensicsImage,
   "@assets/Prathamesh_Pendkar_1756967941797.png": bloggersconImage,
   "@assets/Screenshot 2025-09-13 192405_1757777883128.png": awsCertificateImage,
+  "@assets/aws-certified-solutions-architect-associate.png": awsArchitectBadge,
+  "@assets/unstop_web3.jpeg": web3HackathonImage,
 };
 
 const categoryLabels = {
@@ -69,7 +73,7 @@ export function GallerySection() {
   useEffect(() => {
     const handleContextMenu = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (target.tagName === 'IMG' || target.closest('[data-testid*="gallery-item"]')) {
+      if (target.tagName === 'IMG' || (target.closest && target.closest('[data-testid*="gallery-item"]'))) {
         e.preventDefault();
         e.stopPropagation();
         return false;
@@ -86,7 +90,7 @@ export function GallerySection() {
 
     const handleSelectStart = (e: Event) => {
       const target = e.target as HTMLElement;
-      if (target.tagName === 'IMG' || target.closest('[data-testid*="gallery-item"]')) {
+      if (target.tagName === 'IMG' || (target.closest && target.closest('[data-testid*="gallery-item"]'))) {
         e.preventDefault();
         return false;
       }
@@ -120,7 +124,7 @@ export function GallerySection() {
   const categories = Array.from(new Set(galleryItems?.map(item => item.category) || []));
 
   return (
-    <section id="gallery" className="min-h-screen py-20 px-4" data-testid="gallery-section">
+    <section id="gallery" className="min-h-screen py-20 px-4 relative" data-testid="gallery-section">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-mono font-bold text-neon mb-4 flex items-center justify-center gap-4">
@@ -358,6 +362,14 @@ export function GallerySection() {
           </div>
         </div>
       )}
+
+      {/* Scroll Down Indicator */}
+      <div className="flex justify-center mt-20 pb-8">
+        <a href="#contact" className="flex flex-col items-center gap-2 text-neon hover:text-accent transition-colors">
+          <span className="text-xs font-mono uppercase tracking-widest">Scroll Down</span>
+          <ChevronDown size={24} className="animate-bounce" />
+        </a>
+      </div>
     </section>
   );
 }

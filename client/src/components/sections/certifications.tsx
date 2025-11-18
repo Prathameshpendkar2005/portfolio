@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { TerminalWindow } from "@/components/ui/terminal-window";
-import { Award, Cloud, UserCheck, Search } from "lucide-react";
+import { Award, Cloud, UserCheck, Search, ChevronDown } from "lucide-react";
 import type { Certification } from "@shared/schema";
 
 const iconMap = {
@@ -23,7 +23,7 @@ export function CertificationsSection() {
   }
 
   return (
-    <section id="certifications" className="min-h-screen py-20 px-4" data-testid="certifications-section">
+    <section id="certifications" className="min-h-screen py-20 px-4 relative" data-testid="certifications-section">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-mono font-bold text-neon mb-4 flex items-center justify-center gap-4">
@@ -61,6 +61,14 @@ export function CertificationsSection() {
             );
           })}
         </div>
+      </div>
+
+      {/* Scroll Down Indicator */}
+      <div className="flex justify-center mt-20 pb-8">
+        <a href="#experience" className="flex flex-col items-center gap-2 text-neon hover:text-accent transition-colors">
+          <span className="text-xs font-mono uppercase tracking-widest">Scroll Down</span>
+          <ChevronDown size={24} className="animate-bounce" />
+        </a>
       </div>
     </section>
   );

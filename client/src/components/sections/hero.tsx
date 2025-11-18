@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { TerminalWindow } from "@/components/ui/terminal-window";
-import { Github, Linkedin, Mail, GraduationCap, Phone, Download } from "lucide-react";
+import { Github, Linkedin, Mail, GraduationCap, Phone, Download, ChevronDown } from "lucide-react";
 import { generateATSResume } from "@/lib/resume-generator";
 
 export function HeroSection() {
@@ -85,6 +85,14 @@ export function HeroSection() {
             LinkedIn
           </a>
         </div>
+      </div>
+
+      {/* Scroll Down Indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <a href="#projects" className="flex flex-col items-center gap-2 text-neon hover:text-accent transition-colors">
+          <span className="text-xs font-mono uppercase tracking-widest">Scroll Down</span>
+          <ChevronDown size={24} className="animate-bounce" />
+        </a>
       </div>
     </section>
   );

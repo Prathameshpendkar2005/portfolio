@@ -3,7 +3,7 @@ import { TerminalWindow } from "@/components/ui/terminal-window";
 import { 
   Cloud, UserCheck, Shield, Code, Wrench, Server, Database, 
   Network, Layers, BarChart, Monitor, Search, Bug, 
-  Terminal, Container, GitBranch, Settings
+  Terminal, Container, GitBranch, Settings, ChevronDown
 } from "lucide-react";
 import type { SkillCategory } from "@shared/schema";
 
@@ -29,7 +29,7 @@ export function SkillsSection() {
   }
 
   return (
-    <section id="skills" className="min-h-screen py-20 px-4" data-testid="skills-section">
+    <section id="skills" className="min-h-screen py-20 px-4 relative" data-testid="skills-section">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-mono font-bold text-neon mb-4 flex items-center justify-center gap-4">
@@ -75,6 +75,14 @@ export function SkillsSection() {
             );
           })}
         </div>
+      </div>
+
+      {/* Scroll Down Indicator */}
+      <div className="flex justify-center mt-20 pb-8">
+        <a href="#certifications" className="flex flex-col items-center gap-2 text-neon hover:text-accent transition-colors">
+          <span className="text-xs font-mono uppercase tracking-widest">Scroll Down</span>
+          <ChevronDown size={24} className="animate-bounce" />
+        </a>
       </div>
     </section>
   );

@@ -6,6 +6,50 @@ import type { Project, SkillCategory, Certification, Experience, GalleryItem } f
 // Portfolio data
 const projects: Project[] = [
   {
+    id: "iot-compliance-scanner",
+    title: "IoT Device Compliance Scanner (NIST-Based)",
+    description: "Built a compliance scanner to evaluate IoT devices against NIST security standards with secure communication and automated hardening.",
+    tech: ["MQTT", "Ansible", "NIST Standards", "TLS", "Python"],
+    details: [
+      "Secure MQTT Broker with TLS & Access Controls",
+      "Ansible Automation for NIST-Aligned Hardening",
+      "Hardening: SSH, Firewall, Logging & Service Restrictions",
+      "Notion-Ready Compliance Documentation"
+    ],
+    githubUrl: "https://github.com/Prathameshpendkar2005"
+  },
+  {
+    id: "opencv-arms-gun-detection",
+    title: "OpenCV-Based Arms and Gun Detection System",
+    description: "Developed real-time arms and gun detection system using OpenCV and Haar cascade classifiers for weapon threat detection.",
+    tech: ["OpenCV", "Python", "Haar Cascades", "CCTV", "Edge Computing"],
+    details: [
+      "Real-time Detection from Webcam & CCTV Feeds",
+      "Custom Haar Cascade Training for Firearm Recognition",
+      "Multi-scenario Testing: Lighting, Angles, Occlusion",
+      "Alert Mechanism with Event Logging & Screenshots",
+      "Optimized Pipeline for Low-Latency Edge Devices",
+      "Timestamped Forensic Analysis Logging",
+      "Notion-Ready Deployment Guide"
+    ],
+    githubUrl: "https://github.com/Prathameshpendkar2005"
+  },
+  {
+    id: "decentra-shield-web3",
+    title: "DecentraShield – AI-Powered Decentralized Security (Web3 Hackathon)",
+    description: "Built a decentralized security framework combining blockchain's transparency with AI-driven anomaly detection to protect digital identities and DeFi transactions in real time.",
+    tech: ["Blockchain", "Smart Contracts", "AI/ML", "DeFi", "Solidity", "Python", "TensorFlow"],
+    details: [
+      "AI-Driven Anomaly Detection for DeFi Transactions",
+      "Blockchain-Based Identity Verification",
+      "Real-Time Threat Detection & Alert System",
+      "Decentralized Architecture for Enhanced Security",
+      "Team: Prathamesh Pendkar, Anisha Miranda, Arya Deshpande, Abhijit Avhad",
+      "TantraFiesta'25 Hackathon (IIIT Nagpur) - DeFAI Track"
+    ],
+    githubUrl: "https://github.com/Prathameshpendkar2005"
+  },
+  {
     id: "aws-security",
     title: "Secure Web Hosting on AWS EC2",
     description: "Deployed a web application on EC2 and S3 with custom IAM policies for least-privilege access and isolation.",
@@ -15,7 +59,7 @@ const projects: Project[] = [
       "Route 53 DNS Setup", 
       "WordPress Hardening"
     ],
-    githubUrl: "https://github.com/Prathameshpendkar2005/Projects.git"
+    githubUrl: "https://github.com/Prathameshpendkar2005"
   },
   {
     id: "recon-automation",
@@ -27,7 +71,7 @@ const projects: Project[] = [
       "Port Scanning & Detection",
       "Automated Report Generation"
     ],
-    githubUrl: "https://github.com/Prathameshpendkar2005/Projects.git"
+    githubUrl: "https://github.com/Prathameshpendkar2005"
   },
   {
     id: "tscm-design",
@@ -39,7 +83,7 @@ const projects: Project[] = [
       "Hardware Integration",
       "35% Detection Accuracy Improvement"
     ],
-    githubUrl: "https://github.com/Prathameshpendkar2005/Projects.git"
+    githubUrl: "https://github.com/Prathameshpendkar2005"
   },
   {
     id: "vulnerability-lab",
@@ -51,20 +95,7 @@ const projects: Project[] = [
       "Exploitation Frameworks",
       "Containerized Environment"
     ],
-    githubUrl: "https://github.com/Prathameshpendkar2005/Projects.git"
-  },
-  {
-    id: "iot-compliance-scanner",
-    title: "IoT Device Compliance Scanner (NIST-Based)",
-    description: "Built a compliance scanner to evaluate IoT devices against NIST security standards with secure communication and automated hardening.",
-    tech: ["MQTT", "Ansible", "NIST Standards", "TLS", "Python"],
-    details: [
-      "Secure MQTT Broker with TLS & Access Controls",
-      "Ansible Automation for NIST-Aligned Hardening",
-      "Hardening: SSH, Firewall, Logging & Service Restrictions",
-      "Notion-Ready Compliance Documentation"
-    ],
-    githubUrl: "https://github.com/Prathameshpendkar2005/Projects.git"
+    githubUrl: "https://github.com/Prathameshpendkar2005"
   }
 ];
 
@@ -136,6 +167,26 @@ const skillCategories: SkillCategory[] = [
 
 const certifications: Certification[] = [
   {
+    id: "web3-hackathon",
+    title: "Web3 Hackathon - TantraFiesta'25",
+    provider: "IIIT Nagpur & Unstop",
+    year: "2025",
+    description: "Certificate of Participation - DecentraShield Project (DeFAI Track)",
+    status: "Participant - Nov 2025",
+    statusColor: "bg-purple-600 text-white",
+    icon: "Zap"
+  },
+  {
+    id: "aws-solutions-architect",
+    title: "AWS Certified Solutions Architect - Associate",
+    provider: "Amazon Web Services (AWS Official)",
+    year: "2028",
+    description: "Cloud Architecture & AWS Solutions Design",
+    status: "Certified - Valid until 2028",
+    statusColor: "bg-blue-600 text-white",
+    icon: "Cloud"
+  },
+  {
     id: "aws-cert",
     title: "AWS Cloud Certification",
     provider: "SevenMentor",
@@ -169,11 +220,19 @@ const certifications: Certification[] = [
 
 const galleryItems: GalleryItem[] = [
   {
-    id: "projects-screenshot",
-    title: "Cybersecurity Projects Portfolio",
-    description: "Screenshot showcasing secure web hosting, recon automation, TSCM design, and vulnerability testing lab projects",
-    imagePath: "@assets/image_1756967533758.png",
-    category: "project",
+    id: "web3-hackathon-certificate",
+    title: "TantraFiesta'25 Web3 Hackathon - DecentraShield",
+    description: "Certificate of Participation from IIIT Nagpur's TantraFiesta'25 Web3 Hackathon for DecentraShield project (DeFAI Track). Team: Prathamesh Pendkar, Anisha Miranda, Arya Deshpande, Abhijit Avhad. AI-powered decentralized security framework for digital identities and DeFi.",
+    imagePath: "@assets/unstop_web3.jpeg",
+    category: "achievement",
+    date: "November 2025"
+  },
+  {
+    id: "aws-solutions-architect-badge",
+    title: "AWS Certified Solutions Architect - Associate Badge",
+    description: "Official AWS certification badge for Solutions Architect - Associate level, validating expertise in AWS cloud architecture and solutions design. Credential valid through 2028.",
+    imagePath: "@assets/aws-certified-solutions-architect-associate.png",
+    category: "achievement",
     date: "2025"
   },
   {

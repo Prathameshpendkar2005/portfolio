@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { TerminalWindow } from "@/components/ui/terminal-window";
-import { Briefcase } from "lucide-react";
+import { Briefcase, ChevronDown } from "lucide-react";
 import type { Experience } from "@shared/schema";
 
 export function ExperienceSection() {
@@ -19,7 +19,7 @@ export function ExperienceSection() {
   }
 
   return (
-    <section id="experience" className="min-h-screen py-20 px-4" data-testid="experience-section">
+    <section id="experience" className="min-h-screen py-20 px-4 relative" data-testid="experience-section">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-mono font-bold text-neon mb-4 flex items-center justify-center gap-4">
@@ -56,6 +56,14 @@ export function ExperienceSection() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Scroll Down Indicator */}
+      <div className="flex justify-center mt-20 pb-8">
+        <a href="#gallery" className="flex flex-col items-center gap-2 text-neon hover:text-accent transition-colors">
+          <span className="text-xs font-mono uppercase tracking-widest">Scroll Down</span>
+          <ChevronDown size={24} className="animate-bounce" />
+        </a>
       </div>
     </section>
   );

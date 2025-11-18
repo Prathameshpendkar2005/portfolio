@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { TerminalWindow } from "@/components/ui/terminal-window";
-import { Code, Github } from "lucide-react";
+import { Code, Github, ChevronDown } from "lucide-react";
 import type { Project } from "@shared/schema";
 
 export function ProjectsSection() {
@@ -19,7 +19,7 @@ export function ProjectsSection() {
   }
 
   return (
-    <section id="projects" className="min-h-screen py-20 px-4" data-testid="projects-section">
+    <section id="projects" className="min-h-screen py-20 px-4 relative" data-testid="projects-section">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-mono font-bold text-neon mb-4 flex items-center justify-center gap-4">
@@ -76,6 +76,14 @@ export function ProjectsSection() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Scroll Down Indicator */}
+      <div className="flex justify-center mt-20 pb-8">
+        <a href="#skills" className="flex flex-col items-center gap-2 text-neon hover:text-accent transition-colors">
+          <span className="text-xs font-mono uppercase tracking-widest">Scroll Down</span>
+          <ChevronDown size={24} className="animate-bounce" />
+        </a>
       </div>
     </section>
   );
