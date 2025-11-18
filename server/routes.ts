@@ -50,14 +50,32 @@ const projects: Project[] = [
     githubUrl: "https://github.com/Prathameshpendkar2005"
   },
   {
+    id: "threat-detection-lab",
+    title: "ThreatOps Lab: Real-Time Detection with ELK, Zabbix & Wazuh",
+    description: "Simulated a real-world SOC environment using VirtualBox/VMware with ELK Stack, Zabbix, and Wazuh agents to recreate MITRE ATT&CK-based attack scenarios and validate detection rules.",
+    tech: ["ELK Stack", "Kibana", "Logstash", "Wazuh", "Zabbix", "VirtualBox", "MITRE ATT&CK"],
+    details: [
+      "ELK + Wazuh SIEM: Filebeat, Logstash, Kibana dashboards",
+      "Wazuh Agents: SSH brute force, file integrity, privilege escalation detection",
+      "Zabbix Monitoring: CPU, memory, disk, service uptime & port scanning alerts",
+      "MITRE ATT&CK Simulations: Execution, Persistence, Defense Evasion mapped",
+      "Deliverables: Deployment guide, attack playbook, detection rules, screenshots"
+    ],
+    githubUrl: "https://github.com/Prathameshpendkar2005"
+  },
+  {
     id: "aws-security",
     title: "Secure Web Hosting on AWS EC2",
     description: "Deployed a web application on EC2 and S3 with custom IAM policies for least-privilege access and isolation.",
     tech: ["AWS EC2", "S3", "IAM", "VPC", "CloudFront"],
     details: [
       "Security Groups Configuration",
-      "Route 53 DNS Setup", 
-      "WordPress Hardening"
+      "Route 53 DNS Setup",
+      "├─ OS & Server Hardening (SSH, Fail2Ban, firewall)",
+      "├─ WordPress Security (login limits, file permissions)",
+      "├─ Database Security (non-default credentials, Secrets Manager)",
+      "├─ CloudFront WAF & HTTPS (ACM)",
+      "└─ Monitoring (CloudTrail, GuardDuty, Wazuh)"
     ],
     githubUrl: "https://github.com/Prathameshpendkar2005"
   },
@@ -108,11 +126,11 @@ const skillCategories: SkillCategory[] = [
       { name: "AWS", icon: "Cloud", wikipediaUrl: "https://en.wikipedia.org/wiki/Amazon_Web_Services" },
       { name: "EC2", icon: "Server", wikipediaUrl: "https://en.wikipedia.org/wiki/Amazon_Elastic_Compute_Cloud" },
       { name: "S3", icon: "Database", wikipediaUrl: "https://en.wikipedia.org/wiki/Amazon_S3" },
-      { name: "VPC", icon: "Network", wikipediaUrl: "https://en.wikipedia.org/wiki/Amazon_Virtual_Private_Cloud" },
       { name: "IAM", icon: "UserCheck", wikipediaUrl: "https://en.wikipedia.org/wiki/AWS_Identity_and_Access_Management" },
+      { name: "VPC", icon: "Network", wikipediaUrl: "https://en.wikipedia.org/wiki/Amazon_Virtual_Private_Cloud" },
+      { name: "CloudFront", icon: "Network", wikipediaUrl: "https://en.wikipedia.org/wiki/Amazon_CloudFront" },
       { name: "Azure Cloud", icon: "Cloud", wikipediaUrl: "https://en.wikipedia.org/wiki/Microsoft_Azure" },
       { name: "Google Cloud Platform", icon: "Cloud", wikipediaUrl: "https://en.wikipedia.org/wiki/Google_Cloud_Platform" },
-      { name: "CloudFront", icon: "Network", wikipediaUrl: "https://en.wikipedia.org/wiki/Amazon_CloudFront" },
       { name: "WAF", icon: "Shield", wikipediaUrl: "https://en.wikipedia.org/wiki/Web_application_firewall" }
     ]
   },
@@ -167,16 +185,6 @@ const skillCategories: SkillCategory[] = [
 
 const certifications: Certification[] = [
   {
-    id: "web3-hackathon",
-    title: "Web3 Hackathon - TantraFiesta'25",
-    provider: "IIIT Nagpur & Unstop",
-    year: "2025",
-    description: "Certificate of Participation - DecentraShield Project (DeFAI Track)",
-    status: "Participant - Nov 2025",
-    statusColor: "bg-purple-600 text-white",
-    icon: "Zap"
-  },
-  {
     id: "aws-solutions-architect",
     title: "AWS Certified Solutions Architect - Associate",
     provider: "Amazon Web Services (AWS Official)",
@@ -185,6 +193,26 @@ const certifications: Certification[] = [
     status: "Certified - Valid until 2028",
     statusColor: "bg-blue-600 text-white",
     icon: "Cloud"
+  },
+  {
+    id: "tenet-ctf",
+    title: "TENET CTF 2025 - Capture The Flag",
+    provider: "AISSMS IOIT & ACM India",
+    year: "2025",
+    description: "Ranked 11th in high-intensity cybersecurity CTF competition covering Reverse Engineering, Web Exploitation, Cryptography, Network Analysis, and Digital Forensics",
+    status: "Achieved 11th Position - Oct 2025",
+    statusColor: "bg-red-600 text-white",
+    icon: "Target"
+  },
+  {
+    id: "web3-hackathon",
+    title: "Web3 Hackathon - TantraFiesta'25",
+    provider: "IIIT Nagpur & Unstop",
+    year: "2025",
+    description: "Certificate of Participation - DecentraShield Project (DeFAI Track)",
+    status: "Participant - Nov 2025",
+    statusColor: "bg-purple-600 text-white",
+    icon: "Zap"
   },
   {
     id: "aws-cert",
@@ -220,6 +248,14 @@ const certifications: Certification[] = [
 
 const galleryItems: GalleryItem[] = [
   {
+    id: "tenet-ctf-certificate",
+    title: "TENET CTF 2025 - 11th Position Achievement",
+    description: "Certificate of Appreciation from AISSMS IOIT for participating in TENET CTF 2025 (Capture The Flag) competition held on 12th October 2025. Achieved 11th position among competitive cybersecurity enthusiasts. Demonstrated expertise in Reverse Engineering, Web Exploitation, Cryptography, Network Analysis, and Digital Forensics. Strengthened Red Team mindset, enhanced VAPT skills, and reinforced critical thinking in cybersecurity.",
+    imagePath: "@assets/Aissms.png",
+    category: "achievement",
+    date: "October 2025"
+  },
+  {
     id: "web3-hackathon-certificate",
     title: "TantraFiesta'25 Web3 Hackathon - DecentraShield",
     description: "Certificate of Participation from IIIT Nagpur's TantraFiesta'25 Web3 Hackathon for DecentraShield project (DeFAI Track). Team: Prathamesh Pendkar, Anisha Miranda, Arya Deshpande, Abhijit Avhad. AI-powered decentralized security framework for digital identities and DeFi.",
@@ -232,7 +268,7 @@ const galleryItems: GalleryItem[] = [
     title: "AWS Certified Solutions Architect - Associate Badge",
     description: "Official AWS certification badge for Solutions Architect - Associate level, validating expertise in AWS cloud architecture and solutions design. Credential valid through 2028.",
     imagePath: "@assets/aws-certified-solutions-architect-associate.png",
-    category: "achievement",
+    category: "certificate",
     date: "2025"
   },
   {
@@ -409,7 +445,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   <div class="header">
     <h1>PRATHAMESH SANTOSH PENDKAR</h1>
     <div class="contact">Email: prathameshpendkar@gmail.com | Phone: +91-8390088075 | Location: Pune, India</div>
-    <div class="contact">LinkedIn: linkedin.com/in/prathamesh-pendkar | GitHub: github.com/Prathameshpendkar2005</div>
+    <div class="contact">LinkedIn: www.linkedin.com/in/prathamesh-pendkar-1750b1248 | GitHub: github.com/Prathameshpendkar2005</div>
   </div>
 
   <div class="section">

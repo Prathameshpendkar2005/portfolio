@@ -29,19 +29,19 @@ export function ProjectsSection() {
           <p className="text-muted">Real-world cybersecurity implementations and research</p>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 auto-rows-max">
           {projects && Array.isArray(projects) && projects.map((project) => (
-            <div key={project.id} className="group" data-testid={`project-card-${project.id}`}>
-              <TerminalWindow title={`${project.id}.sh`} hover>
-                <div>
+            <div key={project.id} className="group h-full" data-testid={`project-card-${project.id}`}>
+              <TerminalWindow title={`${project.id}.sh`} hover className="h-full">
+                <div className="flex flex-col h-full">
                   <div className="flex items-start justify-between mb-3">
-                    <h3 className="text-xl font-mono font-bold text-neon">{project.title}</h3>
+                    <h3 className="text-xl font-mono font-bold text-neon flex-1">{project.title}</h3>
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-neon text-background px-3 py-1 rounded text-xs font-mono font-bold hover:bg-accent transition-all duration-300 flex items-center gap-1"
+                        className="bg-neon text-background px-3 py-1 rounded text-xs font-mono font-bold hover:bg-accent transition-all duration-300 flex items-center gap-1 flex-shrink-0 ml-2"
                         data-testid={`github-link-${project.id}`}
                       >
                         <Github size={14} />
@@ -56,7 +56,7 @@ export function ProjectsSection() {
                     {project.tech.map((tech) => (
                       <span 
                         key={tech}
-                        className="bg-terminal px-3 py-1 rounded text-xs font-mono text-accent"
+                        className="bg-terminal px-3 py-1 rounded text-xs font-mono text-accent h-6 flex items-center"
                         data-testid={`tech-tag-${tech.toLowerCase().replace(/\s+/g, '-')}`}
                       >
                         {tech}
@@ -64,7 +64,7 @@ export function ProjectsSection() {
                     ))}
                   </div>
                   
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex-grow">
                     {project.details.map((detail, index) => (
                       <p key={index} className="text-xs text-muted font-mono">
                         ├── {detail}

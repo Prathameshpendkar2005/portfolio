@@ -54,7 +54,7 @@ export function generateATSResume(): void {
   // Header
   addText('PRATHAMESH SANTOSH PENDKAR', 16, true);
   addText('Email: prathameshpendkar@gmail.com | Phone: +91-8390088075 | Location: Pune, India', 9);
-  addText('LinkedIn: linkedin.com/in/prathamesh-pendkar | GitHub: github.com/Prathameshpendkar2005', 9);
+  addText('LinkedIn: www.linkedin.com/in/prathamesh-pendkar-1750b1248 | GitHub: github.com/Prathameshpendkar2005', 9);
   currentY += 5;
 
   // Professional Summary

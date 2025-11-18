@@ -34,17 +34,17 @@ export function ExperienceSection() {
             <div key={exp.id} data-testid={`experience-${exp.id}`}>
               <TerminalWindow title={`${exp.id}.log`} hover>
                 <div>
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                    <div>
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4 gap-4">
+                    <div className="flex-1">
                       <h3 className="text-xl font-mono font-bold text-neon">{exp.title}</h3>
-                      <p className="text-accent font-mono">{exp.company}</p>
+                      <p className="text-accent font-mono text-sm">{exp.company}</p>
                     </div>
-                    <div className="text-muted font-mono text-sm">
+                    <div className="text-muted font-mono text-sm flex-shrink-0 whitespace-nowrap">
                       {exp.duration}
                     </div>
                   </div>
                   
-                  <div className={`${exp.achievements.length > 2 ? 'grid md:grid-cols-2 gap-4' : 'space-y-2'} text-sm`}>
+                  <div className="space-y-2 text-sm">
                     {exp.achievements.map((achievement, index) => (
                       <p key={index} className="font-mono text-foreground">
                         <span className="text-neon">{'>'}</span> {achievement}

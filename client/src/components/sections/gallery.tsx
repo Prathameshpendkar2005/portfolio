@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { TerminalWindow } from "@/components/ui/terminal-window";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { Camera, Filter, X, ZoomIn, ZoomOut, RotateCcw, ChevronDown } from "lucide-react";
 import type { GalleryItem } from "@shared/schema";
 
@@ -14,6 +15,7 @@ import bloggersconImage from "@assets/Prathamesh_Pendkar_1756967941797.png";
 import awsCertificateImage from "@assets/Screenshot 2025-09-13 192405_1757777883128.png";
 import awsArchitectBadge from "@assets/aws-certified-solutions-architect-associate.png";
 import web3HackathonImage from "@assets/unstop_web3.jpeg";
+import tenetCTFImage from "@assets/Aissms.png";
 
 // Map the image paths to imported modules
 const imageMap = {
@@ -26,6 +28,7 @@ const imageMap = {
   "@assets/Screenshot 2025-09-13 192405_1757777883128.png": awsCertificateImage,
   "@assets/aws-certified-solutions-architect-associate.png": awsArchitectBadge,
   "@assets/unstop_web3.jpeg": web3HackathonImage,
+  "@assets/Aissms.png": tenetCTFImage,
 };
 
 const categoryLabels = {
@@ -173,44 +176,48 @@ export function GallerySection() {
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredItems?.map((item) => {
+          {filteredItems?.map((item, index) => {
             const imageSrc = imageMap[item.imagePath as keyof typeof imageMap];
             return (
               <div
                 key={item.id}
-                className="group cursor-pointer"
+                className="group cursor-pointer hover-lift hover-glow"
                 onClick={() => setSelectedImage(item)}
                 data-testid={`gallery-item-${item.id}`}
+                style={{
+                  animation: `fadeInUp ${0.6 + index * 0.1}s ease-out forwards`,
+                  opacity: 0,
+                }}
               >
                 <TerminalWindow 
                   title={`${item.category}.${item.id}`}
                   hover
-                  className="h-full"
+                  className="h-full transition-all duration-300"
                 >
                   <div>
                     <div className="aspect-video mb-4 rounded overflow-hidden bg-terminal">
                       <img 
                         src={imageSrc}
                         alt={item.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 ease-out"
                       />
                     </div>
                     
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className={`text-xs font-mono px-2 py-1 rounded bg-terminal ${categoryColors[item.category as keyof typeof categoryColors]}`}>
+                        <span className={`text-xs font-mono px-2 py-1 rounded bg-terminal ${categoryColors[item.category as keyof typeof categoryColors]} transition-colors duration-300`}>
                           {categoryLabels[item.category as keyof typeof categoryLabels]}
                         </span>
                         {item.date && (
-                          <span className="text-xs text-muted font-mono">{item.date}</span>
+                          <span className="text-xs text-muted font-mono transition-colors duration-300">{item.date}</span>
                         )}
                       </div>
                       
-                      <h3 className="font-mono font-bold text-foreground group-hover:text-neon transition-colors">
+                      <h3 className="font-mono font-bold text-foreground group-hover:text-neon transition-colors duration-300">
                         {item.title}
                       </h3>
                       
-                      <p className="text-sm text-muted font-mono line-clamp-2 group-hover:text-accent transition-colors">
+                      <p className="text-sm text-muted font-mono line-clamp-2 group-hover:text-accent transition-colors duration-300">
                         {item.description}
                       </p>
                     </div>
@@ -298,30 +305,43 @@ export function GallerySection() {
             <div className="flex-1 overflow-hidden px-2 sm:px-4">
               <div className="h-full overflow-auto bg-terminal rounded-lg border border-muted/20">
                 <div className="p-2 sm:p-4">
-                  {/* Image Display Area */}
-                  <div className="flex justify-center mb-4">
-                    <div 
-                      className="transition-all duration-200 ease-in-out"
-                      style={{
-                        transform: `scale(${zoomLevel})`,
-                        transformOrigin: 'center top'
-                      }}
-                    >
-                      <img 
-                        src={imageMap[selectedImage.imagePath as keyof typeof imageMap]}
-                        alt={selectedImage.title}
-                        className="rounded shadow-lg border border-muted/30"
-                        style={{
-                          maxWidth: zoomLevel <= 1 ? '100%' : 'none',
-                          width: zoomLevel <= 1 ? 'auto' : '120%',
-                          height: 'auto',
-                          // Auto-fit to container while maintaining aspect ratio
-                          objectFit: 'contain'
-                        }}
-                        data-testid="modal-image"
-                      />
+                  {/* Check if it's a PDF */}
+                  {selectedImage.imagePath.endsWith('.pdf') ? (
+                    <div className="flex justify-center mb-4">
+                      <div className="w-full max-w-4xl">
+                        <iframe 
+                          src={imageMap[selectedImage.imagePath as keyof typeof imageMap] as any}
+                          className="w-full rounded shadow-lg border border-muted/30"
+                          style={{ height: '600px' }}
+                          data-testid="modal-pdf"
+                        />
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="flex justify-center mb-4">
+                      <div 
+                        className="transition-all duration-200 ease-in-out"
+                        style={{
+                          transform: `scale(${zoomLevel})`,
+                          transformOrigin: 'center top'
+                        }}
+                      >
+                        <img 
+                          src={imageMap[selectedImage.imagePath as keyof typeof imageMap] as any}
+                          alt={selectedImage.title}
+                          className="rounded shadow-lg border border-muted/30"
+                          style={{
+                            maxWidth: zoomLevel <= 1 ? '100%' : 'none',
+                            width: zoomLevel <= 1 ? 'auto' : '120%',
+                            height: 'auto',
+                            // Auto-fit to container while maintaining aspect ratio
+                            objectFit: 'contain'
+                          }}
+                          data-testid="modal-image"
+                        />
+                      </div>
+                    </div>
+                  )}
                   
                   {/* Certificate Details */}
                   <div className="space-y-3 border-t border-muted/20 pt-4">

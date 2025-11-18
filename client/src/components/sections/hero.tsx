@@ -22,8 +22,8 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-center relative px-4" data-testid="hero-section">
-      <div className="max-w-4xl mx-auto text-center">
+    <section id="hero" className="min-h-screen flex flex-col items-center justify-center relative px-4" data-testid="hero-section">
+      <div className="max-w-4xl mx-auto text-center w-full">
         <TerminalWindow title="prathamesh@cybersec ~ %" className="mb-8">
           <div className="font-mono">
             <div className="text-neon mb-4 text-2xl">
@@ -68,17 +68,17 @@ export function HeroSection() {
             href="https://github.com/Prathameshpendkar2005" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="border border-neon text-neon px-6 py-3 rounded-lg font-mono font-bold hover:bg-neon hover:text-background transition-all duration-300 flex items-center gap-2"
+            className="bg-neon text-background px-6 py-3 rounded-lg font-mono font-bold hover:bg-accent transition-all duration-300 hover:scale-105 flex items-center gap-2"
             data-testid="link-github"
           >
             <Github size={20} />
             GitHub
           </a>
           <a 
-            href="https://linkedin.com/in/prathamesh-pendkar" 
+            href="https://www.linkedin.com/in/prathamesh-pendkar-1750b1248" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="border border-accent text-accent px-6 py-3 rounded-lg font-mono font-bold hover:bg-accent hover:text-background transition-all duration-300 flex items-center gap-2"
+            className="bg-accent text-background px-6 py-3 rounded-lg font-mono font-bold hover:bg-neon transition-all duration-300 hover:scale-105 flex items-center gap-2"
             data-testid="link-linkedin"
           >
             <Linkedin size={20} />
@@ -88,10 +88,10 @@ export function HeroSection() {
       </div>
 
       {/* Scroll Down Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <a href="#projects" className="flex flex-col items-center gap-2 text-neon hover:text-accent transition-colors">
+      <div className="flex justify-center mt-20 pb-8">
+        <a href="#projects" className="flex flex-col items-center gap-2 text-neon hover:text-accent transition-colors animate-bounce">
           <span className="text-xs font-mono uppercase tracking-widest">Scroll Down</span>
-          <ChevronDown size={24} className="animate-bounce" />
+          <ChevronDown size={24} />
         </a>
       </div>
     </section>

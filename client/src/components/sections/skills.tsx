@@ -39,19 +39,19 @@ export function SkillsSection() {
           <p className="text-muted">Expertise across cybersecurity domains</p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 auto-rows-max">
           {skillCategories && Array.isArray(skillCategories) && skillCategories.map((category) => {
             const IconComponent = iconMap[category.icon as keyof typeof iconMap] || Wrench;
             return (
-              <div key={category.id} data-testid={`skill-category-${category.id}`}>
-                <TerminalWindow title={category.id}>
-                  <div>
+              <div key={category.id} data-testid={`skill-category-${category.id}`} className="h-full">
+                <TerminalWindow title={category.id} className="h-full">
+                  <div className="flex flex-col h-full">
                     <h3 className="text-lg font-mono font-bold text-accent mb-4 flex items-center gap-2">
                       <IconComponent size={20} />
                       {category.title}
                     </h3>
                     
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-2 gap-3 flex-grow">
                       {category.tools?.map((tool) => {
                         const ToolIcon = iconMap[tool.icon as keyof typeof iconMap] || Code;
                         return (
@@ -60,11 +60,11 @@ export function SkillsSection() {
                             href={tool.wikipediaUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-2 bg-terminal px-3 py-2 rounded text-sm font-mono text-neon hover:bg-border hover:text-accent transition-colors cursor-pointer"
+                            className="flex items-center gap-2 bg-terminal px-3 py-2 rounded text-sm font-mono text-neon hover:bg-border hover:text-accent transition-colors cursor-pointer h-10 justify-start"
                             data-testid={`tool-${tool.name.toLowerCase().replace(/\s+/g, '-')}`}
                           >
-                            <ToolIcon size={16} />
-                            <span>{tool.name}</span>
+                            <ToolIcon size={16} className="flex-shrink-0" />
+                            <span className="truncate">{tool.name}</span>
                           </a>
                         );
                       })}

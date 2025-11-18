@@ -89,12 +89,12 @@ export function ContactSection() {
                 </div>
                 <div>
                   <a 
-                    href="https://linkedin.com/in/prathamesh-pendkar" 
+                    href="https://www.linkedin.com/in/prathamesh-pendkar-1750b1248" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="font-mono text-foreground group-hover:text-accent transition-colors"
                   >
-                    linkedin.com/in/prathamesh-pendkar
+                    www.linkedin.com/in/prathamesh-pendkar-1750b1248
                   </a>
                   <p className="text-sm text-muted">Professional network & experience</p>
                 </div>
@@ -134,10 +134,10 @@ export function ContactSection() {
                     Download Resume
                   </button>
                   <a 
-                    href="https://linkedin.com/in/prathamesh-pendkar" 
+                    href="https://www.linkedin.com/in/prathamesh-pendkar-1750b1248" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="border border-accent text-accent px-6 py-3 rounded-lg font-mono font-bold hover:bg-accent hover:text-background transition-all duration-300"
+                    className="bg-accent text-background px-6 py-3 rounded-lg font-mono font-bold hover:bg-neon transition-all duration-300 hover:scale-105"
                     data-testid="button-connect-linkedin"
                   >
                     Connect on LinkedIn

@@ -39,19 +39,26 @@ export function CertificationsSection() {
             return (
               <div key={cert.id} data-testid={`certification-${cert.id}`}>
                 <TerminalWindow title={`${cert.id}.json`} hover>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4">
-                      <div className="text-4xl text-neon">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex items-center space-x-4 flex-1">
+                      <div className="text-neon flex-shrink-0">
                         <IconComponent size={48} />
                       </div>
-                      <div>
+                      <div className="flex-1">
                         <h3 className="text-lg font-mono font-bold text-foreground">{cert.title}</h3>
-                        <p className="text-muted">{cert.provider} • {cert.year}</p>
+                        <p className="text-muted text-sm">{cert.provider} • {cert.year}</p>
                         <p className="text-sm text-accent font-mono">{cert.description}</p>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <div className={`${cert.statusColor} px-3 py-1 rounded font-mono text-sm`}>
+                    <div className="flex-shrink-0">
+                      <div className={`${
+                        cert.status.includes("Certified") || 
+                        cert.status.includes("Achieved") || 
+                        cert.status.includes("Participant") || 
+                        cert.status.includes("Completed")
+                          ? "bg-green-500 text-black px-2 py-1 rounded text-xs font-bold"
+                          : cert.statusColor + " px-3 py-1 rounded font-mono text-sm whitespace-nowrap"
+                      }`}>
                         {cert.status}
                       </div>
                     </div>
